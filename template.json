@@ -1,0 +1,64 @@
+{
+    "tag": "html",
+    "attrs": {},
+    "children": [
+        {
+            "tag": "body",
+            "attrs": {},
+            "children": [
+                {
+                    "tag": "div",
+                    "attrs": {
+                        "id": "body_wrap"
+                    },
+                    "children": [
+                        {
+                            "tag": "div",
+                            "attrs": {
+                                "id": "content"
+                            },
+                            "children": [
+                                {
+                                    "tag": "main",
+                                    "attrs": {
+                                        "id": "main_content"
+                                    },
+                                    "children": [
+                                        {
+                                            "tag": "article",
+                                            "attrs": {
+                                                "class": [
+                                                    "l-mainContent__inner"
+                                                ]
+                                            },
+                                            "children": [
+                                                {
+                                                    "tag": "figure",
+                                                    "attrs": {
+                                                        "class": [
+                                                            "p-articleThumb"
+                                                        ]
+                                                    },
+                                                    "children": []
+                                                },
+                                                {
+                                                    "tag": "div",
+                                                    "attrs": {
+                                                        "class": [
+                                                            "post_content"
+                                                        ]
+                                                    },
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
