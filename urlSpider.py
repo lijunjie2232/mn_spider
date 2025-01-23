@@ -2,7 +2,7 @@ from GrammarPage import GrammarPage
 from tqdm import tqdm
 from multiprocessing.pool import ThreadPool
 
-THREAD_NUM = 16
+THREAD_NUM = 32
 
 
 class urlSpider:

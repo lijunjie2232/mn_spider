@@ -12,7 +12,7 @@ PROXIES = {"http": "socks5://127.0.0.1:7890", "https": "socks5://127.0.0.1:7890"
 class GrammarPage:
     custom_style = """body{font-weight:400;font-family:sans-serif}.gray{color:#a0a0a0}.bold{font-weight:bolder;color:#fd79a8}"""
 
-    def __init__(self, url, config="template.json", styled=True):
+    def __init__(self, url, config="template.json", styled=False):
         self.styled = styled
         self.load_config(config)
 
@@ -46,7 +46,8 @@ class GrammarPage:
             purePage.head.append(style_tag)
         for comment in purePage.find_all(string=lambda text: isinstance(text, Comment)):
             comment.extract()
-        page = str(purePage)
+        # page = str(purePage)
+        page = str(purePage.body.div.div.main)
         # page = re.sub(r"[\n\u3000]", "", page)
         page = re.sub(r"[\n]", "", page)
         page = re.sub(r"[\u3000]", "&nbsp;&nbsp;", page)
