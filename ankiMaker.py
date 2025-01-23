@@ -13,12 +13,12 @@ import os
 from pathlib import Path
 from tqdm import tqdm
 
-CUSTOM_CSS = """body{font-weight:400;font-family:sans-serif}.gray{color:#a0a0a0}.bold{font-weight:bolder;color:#fd79a8}"""
+CUSTOM_CSS = """body{font-weight:400;font-family:sans-serif}img{object-fit:contain}.gray{color:#a0a0a0}.bold{font-weight:bolder;color:#e3008c}"""
 
 
 if __name__ == "__main__":
     # 创建一个模型
-    model_id = 1607392320
+    model_id = 1607391320
     model = genanki.Model(
         model_id,
         "Picture Card",
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     )
 
     # 创建一个牌组
-    deck_id = 2059400130
+    deck_id = 2059401130
     deck = genanki.Deck(deck_id, "JA语法")
 
     ROOT = Path(__file__).resolve().parent
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         for id, type, tag, index, grammary, url in loop:
             p_id, _, page_ctx = db.get_pages(where=f'`url`="{url}"')[0]
             a_ctx = """<h1>%s</h1>""" % grammary
-            b_ctx = a_ctx + """<br>%s""" % page_ctx
+            b_ctx = """%s""" % page_ctx
             note = genanki.Note(
                 model=model,
                 fields=[
