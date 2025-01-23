@@ -17,18 +17,20 @@ CUSTOM_CSS = """body{font-weight:400;font-family:sans-serif}img{object-fit:conta
 
 
 if __name__ == "__main__":
+    ROOT = Path(__file__).resolve().parent
     # 创建一个模型
     model_id = 1607391320
+
     model = genanki.Model(
         model_id,
-        "Picture Card",
+        "card",
         fields=[
             {"name": "Question"},
             {"name": "Answer"},
         ],
         templates=[
             {
-                "name": "Card 1",
+                "name": " Card 1",
                 "qfmt": "{{Question}}",
                 "afmt": '{{FrontSide}}<hr id="answer">{{Answer}}',
             },
@@ -36,11 +38,19 @@ if __name__ == "__main__":
         css=CUSTOM_CSS,
     )
 
-    # 创建一个牌组
+    # 创建N个牌组
     deck_id = 2059401130
-    deck = genanki.Deck(deck_id, "JA语法")
-
-    ROOT = Path(__file__).resolve().parent
+    decks = {}
+    tags = [
+        "Ｎ０文法",
+        "Ｎ１文法",
+        "Ｎ３文法",
+        "Ｎ２文法",
+        "Ｎ４文法",
+        "Ｎ５文法",
+    ]
+    for idx, tag in enumerate(tags):
+        decks[tag] = genanki.Deck(deck_id + idx, "JA语法::%s" % tag)
 
     with DBStorage() as db:
         page_index = db.get_indices(where="`type`=0")
@@ -57,10 +67,10 @@ if __name__ == "__main__":
                     a_ctx,
                     b_ctx,
                 ],
-                tags=[tag],
+                tags=[tag, index],
             )
-            deck.add_note(note)
+            decks[tag].add_note(note)
 
     # 生成APKG文件
-    my_package = genanki.Package(deck)
+    my_package = genanki.Package([decks[tag] for tag in tags])
     my_package.write_to_file(ROOT / "mn_cards.apkg")
