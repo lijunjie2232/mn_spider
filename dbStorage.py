@@ -89,8 +89,10 @@ class DBStorage:
             )
         self.conn.commit()
 
-    def get_pages(self, cols="id,url,page_ctx", where=""):
-        self.cursor.execute(f"SELECT {cols} FROM page"+(" WHERE "+where if where else ""))
+    def get_pages(self, cols="*", where=""):
+        self.cursor.execute(
+            f"SELECT {cols} FROM page" + (f" WHERE {where}" if where else "")
+        )
         return self.cursor.fetchall()
 
     def update_page(self, page_id, url, page_ctx):
@@ -110,8 +112,11 @@ class DBStorage:
         )
         self.conn.commit()
 
-    def get_indices(self):
-        self.cursor.execute("SELECT * FROM index_table")
+    def get_indices(self, cols="*", where=""):
+
+        self.cursor.execute(
+            f"SELECT {cols} FROM index_table" + (f" WHERE {where}" if where else "")
+        )
         return self.cursor.fetchall()
 
     def update_index(self, index_id, type, tag, index, sentence, url):
