@@ -12,9 +12,10 @@ import genanki
 import os
 from pathlib import Path
 from tqdm import tqdm
+import re
 
 CUSTOM_CSS = """body{font-weight:400;font-family:sans-serif}img{object-fit:contain}.gray{color:#a0a0a0}.bold{font-weight:bolder;color:#e3008c}"""
-
+MUSIC_PATTERN = re.compile(r"<a class=\"sounds\" data-file=\"(.*?)\" href=\"#\">▶</a>")
 
 if __name__ == "__main__":
     ROOT = Path(__file__).resolve().parent
