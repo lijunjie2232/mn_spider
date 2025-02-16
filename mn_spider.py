@@ -82,6 +82,7 @@ if __name__ == "__main__":
 
     from dbStorage import DBStorage
 
+    # store url of each grammar page
     with DBStorage("ja_gramma.db") as db:
 
         urlSet = set()
