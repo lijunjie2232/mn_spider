@@ -174,3 +174,5 @@ cython_debug/
 *.html
 *_files/
 # *.db
+
+res/

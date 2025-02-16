@@ -16,7 +16,7 @@ import re
 
 CUSTOM_CSS = """body{font-weight:400;font-family:sans-serif}img{object-fit:contain}.gray{color:#a0a0a0}.bold{font-weight:bolder;color:#e3008c}"""
 MUSIC_PATTERN = re.compile(
-    r"<a class=\"sounds\" data-file=\"(.*?)\" href=\"#\">▶</a>",
+    r"<a class="sounds" data-file=".*?/([^/]+)" href="#">▶</a>",
 )
 
 if __name__ == "__main__":
@@ -67,7 +67,7 @@ if __name__ == "__main__":
         loop = tqdm(page_index)
         for id, type, tag, index, grammary, url in loop:
             p_id, _, page_ctx = db.get_pages(where=f'`url`="{url}"')[0]
-            page_ctx = MUSIC_PATTERN.sub(r"[sound:\1]", page_ctx)
+            page_ctx = MUSIC_PATTERN.sub(r"[sound:\1.mp3]", page_ctx)
             a_ctx = """<h1>%s</h1>""" % grammary
             b_ctx = """%s""" % page_ctx
             note = genanki.Note(
